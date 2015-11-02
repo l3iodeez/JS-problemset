@@ -193,6 +193,20 @@ describe("isPrime", function () {
   });
 });
 
+describe("primes", function () {
+  it("returns an empty array for 0", function () {
+    expect(Assessment.primes(0)).toEqual([]);
+  });
+
+  it("returns the first 3 primes", function () {
+    expect(Assessment.primes(3)).toEqual([2, 3, 5]);
+  });
+
+  it("returns the first 10 primes", function () {
+    expect(Assessment.primes(10)).toEqual([2, 3, 5, 7, 11, 13, 17, 19, 23, 29]);
+  });
+});
+
 describe("sumNPrimes", function () {
   it("returns 0 for 0", function () {
     expect(Assessment.sumNPrimes(0)).toEqual(0);
@@ -245,14 +259,16 @@ describe("factorialsRec", function () {
 });
 
 describe("String.prototype.jumbleSort", function() {
+  var alph = ['h','e','l','o','a','b','c',
+    'd','f','g','i','j','k','m','n','p',
+    'q','r','s','t','u','v','x','y','z'];
+
   it("should default to alphabetical order", function() {
     expect("hello".jumbleSort()).toEqual("ehllo");
   });
 
   it("should take an alphabet array and sort by that order", function() {
-    var alph = ['h','e','l','o','a','b','c',
-      'd','f','g','i','j','k','m','n','p',
-      'q','r','s','t','u','v','x','y','z'];
+
 
     expect("hello".jumbleSort(alph)).toEqual("hello");
   });
@@ -263,25 +279,25 @@ describe("String.prototype.jumbleSort", function() {
       'd','e','f','g','h','i','j','k','l','m','n','o','p',
       'q','r','s','t','u','v','x','y','z'].reverse();
 
-      expect("hello".jumbleSort(alph)).toEqual("ollhe");
+      expect("hello".jumbleSort(reverse)).toEqual("ollhe");
   });
 });
 
 describe("Array.prototype.dups", function() {
   it("solves a simple example" , function() {
-    expect([1, 3, 0, 1].dups).toEqual({ 1: [0, 3] });
+    expect(JSON.stringify([1, 3, 0, 1].dups())).toEqual(JSON.stringify({ 1: [0, 3] }));
   });
 
   it("finds two dups", function() {
-    expect([1, 3, 0, 3, 1].dups).toEqual({ 1: [0, 4], 3: [1, 3] });
+    expect(JSON.stringify([1, 3, 0, 3, 1].dups())).toEqual(JSON.stringify({ 1: [0, 4], 3: [1, 3] }));
   });
 
-  it("should be able to do reverse alphabetical order", function() {
-    expect([1, 3, 4, 3, 0, 3].dups).toEqual({ 3: [1, 3, 5] });
+  it("solves a more complex example", function() {
+    expect(JSON.stringify([1, 3, 4, 3, 0, 3, 4, 7, 4, 2, 1].dups())).toEqual(JSON.stringify({ 1: [0,10], 3: [1, 3, 5], 4: [2, 6, 8]}));
   });
 
   it("returns {} when no dups found", function() {
-    expect([1, 3, 4, 5].dups).toEqual({});
+    expect(JSON.stringify([1, 3, 4, 5].dups())).toEqual(JSON.stringify({}));
   });
 });
 
@@ -356,7 +372,7 @@ describe("Array.prototype.transpose", function() {
       [5, 6]
       ];
       it('should transpose a matrix' , function() {
-        expect(square.transpose).toEqual([
+        expect(square.transpose()).toEqual([
           [1, 4, 7],
           [2, 5, 8],
           [3, 6, 9]
@@ -364,7 +380,7 @@ describe("Array.prototype.transpose", function() {
       });
 
       it("should transpose a matrix of a different size", function() {
-        expect(small.transpose).toEqual([
+        expect(small.transpose()).toEqual([
           [1, 3],
           [2, 4]
           ]);
@@ -372,7 +388,7 @@ describe("Array.prototype.transpose", function() {
 
 
       it("should transpose a rectangular matrix", function() {
-        expect(rect.transpose).toEqual([
+        expect(rect.transpose()).toEqual([
           [1, 4],
           [2, 5],
           [3, 6]
@@ -380,7 +396,7 @@ describe("Array.prototype.transpose", function() {
       });
 
       it("should transpose a different rectangular matrix", function() {
-        expect(tall_rect.transpose).toEqual([
+        expect(tall_rect.transpose()).toEqual([
           [1, 3, 5],
           [2, 4, 6]
           ]);
@@ -398,46 +414,46 @@ describe("Array.prototype.transpose", function() {
 
 describe("Array.prototype.sumRec", function () {
   it("returns 0 if no values are given", function () {
-    expect([].sumRec).toEqual(0);
+    expect([].sumRec()).toEqual(0);
   });
 
   it("returns the first value if 1 value is given", function () {
-    expect([1].sumRec).toEqual(1);
+    expect([1].sumRec()).toEqual(1);
   });
 
 
   it("calls itself recursively", function () {
     spyOn(Array.prototype, "sumRec").and.callThrough();
 
-    [1,2,3,4,5,6].sumRec;
-    var count = Array.sumRec.calls.count();
+    [1,2,3,4,5,6].sumRec();
+    var count = Array.prototype.sumRec.calls.count();
     expect(count).toBeGreaterThan(4);
     expect(count).toBeLessThan(10);
   });
 
   it("sums multiple numbers", function () {
-    expect([1,2,3,4].sumRec).toEqual(10);
+    expect([1,2,3,4].sumRec()).toEqual(10);
   });
 
   it("sums multiple numbers", function () {
-    expect([-10, 10, 5, 4].sumRec).toEqual(9);
+    expect([-10, 10, 5, 4].sumRec()).toEqual(9);
   });
 });
 
 describe("String.prototype.foldingCipher", function() {
   it("should use the folding cipher", function() {
-    expect("a".foldingCipher).toEqual("z");
-    expect("d".foldingCipher).toEqual("w");
+    expect("a".foldingCipher()).toEqual("z");
+    expect("d".foldingCipher()).toEqual("w");
   });
 
   it("should encode words correctly", function() {
-    expect("hello".foldingCipher).toEqual("svool");
-    expect("goodbye".foldingCipher).toEqual("tllwybv");
+    expect("hello".foldingCipher()).toEqual("svool");
+    expect("goodbye".foldingCipher()).toEqual("tllwybv");
   });
 
   it("should decode words correctly", function() {
-    expect("svool".foldingCipher).toEqual("hello");
-    expect("tllwybv".foldingCipher).toEqual("goodbye");
+    expect("svool".foldingCipher()).toEqual("hello");
+    expect("tllwybv".foldingCipher()).toEqual("goodbye");
   });
 });
 
@@ -445,26 +461,26 @@ describe("String.prototype.symmetrical", function() {
   it("doesn't use reverse", function() {
     spyOn(Array.prototype, "reverse").and.callThrough();
 
-    [1,2,3].symmetrical();
+    "[1,2,3]".symmetrical();
 
-    var count = Array.prototype.symmetrical.calls.count();
+    var count = Array.prototype.reverse.calls.count();
     expect(count).toBeLessThan(1);
   });
 
   it("detects palindromes with an odd number of letters", function() {
-    expect("racecar".symmetrical).toEqual(true);
+    expect("racecar".symmetrical()).toEqual(true);
   });
 
   it("detects palindromes with an EVEN number of letters", function() {
-    expect("toot".symmetrical).toEqual(true);
+    expect("toot".symmetrical()).toEqual(true);
   });
 
   it("doesn't give false positives", function() {
-    expect("racelikecar".symmetrical).toEqual(false);
+    expect("racelikecar".symmetrical()).toEqual(false);
   });
 
   it("can handle multi word palindromes", function() {
-    expect("too hot to hoot".symmetrical).toEqual(true);
+    expect("too hot to hoot".symmetrical()).toEqual(true);
   });
 
 });
