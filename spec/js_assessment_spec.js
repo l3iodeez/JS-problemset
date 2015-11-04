@@ -259,9 +259,9 @@ describe("factorialsRec", function () {
 });
 
 describe("String.prototype.jumbleSort", function() {
-  var alph = ['h','e','l','o','a','b','c',
-    'd','f','g','i','j','k','m','n','p',
-    'q','r','s','t','u','v','x','y','z'];
+  var alph = ['a','b','c',
+    'd','e','f','g','h','i','j','k','l','m','n','o','p',
+    'q','r','s','t','u','v','w','x','y','z'];
 
   it("should default to alphabetical order", function() {
     expect("hello".jumbleSort()).toEqual("ehllo");
@@ -277,7 +277,7 @@ describe("String.prototype.jumbleSort", function() {
 
     var reverse = ['a','b','c',
       'd','e','f','g','h','i','j','k','l','m','n','o','p',
-      'q','r','s','t','u','v','x','y','z'].reverse();
+      'q','r','s','t','u','v','w','x','y','z'].reverse();
 
       expect("hello".jumbleSort(reverse)).toEqual("ollhe");
   });

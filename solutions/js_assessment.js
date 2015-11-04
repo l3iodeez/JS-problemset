@@ -342,6 +342,23 @@ debugger
 
   // write Function.prototype.myBind.
 
+  Function.prototype.myBind = function (context) {
+    var args = Array.prototype.slice.call(arguments, 1)
+    var fn = this;
+    return function () {
+      var bindTimeArgs = args;
+      var callTimeArgs = Array.prototype.slice.call(arguments);
+
+      return fn.apply(context, bindTimeArgs.concat(callTimeArgs));
+    }
+  }
+
   // write Function.prototype.inherits.
+
+  Function.prototype.inherits = function (parentClass) {
+    var Surrogate = function () {};
+    Surrogate.prototype = parentClass.prototype;
+    this.prototype = new Surrogate;
+  }
 
 })();

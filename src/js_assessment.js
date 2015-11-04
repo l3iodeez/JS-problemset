@@ -8,7 +8,6 @@
   // write Array.prototype.myReduce (analogous to Ruby's Array#inject).
 
 
-
   // write Array.prototype.quickSort. Here's a quick refresher if
   // you've forgotten how quickSort works:
   //   - choose a pivot element from the array (usually the first)
@@ -46,6 +45,7 @@
   // first `n` factorial numbers.
   // Be aware that the first factorial number is 0!, which is defined to
   // equal 1. So the 2nd factorial is 1!, the 3rd factorial is 2!, etc.
+
 
 
   // Write String.prototype.jumbleSort(alphabet)
@@ -94,6 +94,10 @@
 
   // write Function.prototype.myBind.
 
+
+
   // write Function.prototype.inherits.
+
+
 
 })();
