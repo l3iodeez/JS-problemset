@@ -269,6 +269,9 @@ describe("String.prototype.jumbleSort", function() {
 
   it("should take an alphabet array and sort by that order", function() {
 
+    var alph = ['h','e','l','o','a','b','c',
+      'd','f','g','i','j','k','m','n','p',
+      'q','r','s','t','u','v','w','x','y','z'];
 
     expect("hello".jumbleSort(alph)).toEqual("hello");
   });
@@ -482,6 +485,36 @@ describe("String.prototype.symmetrical", function() {
   it("can handle multi word palindromes", function() {
     expect("too hot to hoot".symmetrical()).toEqual(true);
   });
+
+});
+
+describe("Array.prototype.bsearch", function() {
+
+  it("returns null for an empty array", function() {
+    expect([].bsearch(1)).toEqual(null);
+  });
+
+  it("returns 0 for a single element array", function() {
+    expect([5].bsearch(5)).toEqual(0);
+  });
+
+  it("solves a simple case", function() {
+    expect([1,2,5].bsearch(5)).toEqual(2);
+  });
+
+  it("solves a more complex case", function() {
+    expect([1,3,4,5,10,12,17].bsearch(17)).toEqual(6);
+  });
+
+  it("calls itself recursively", function() {
+    spyOn(Array.prototype, "bsearch").and.callThrough();
+
+    [1,2,3,4,5].bsearch(1);
+
+    var count = Array.prototype.bsearch.calls.count();
+    expect(count).toBeGreaterThan(1);
+  });
+
 
 });
 

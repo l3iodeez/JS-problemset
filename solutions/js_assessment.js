@@ -318,6 +318,28 @@ debugger
     return result.concat(arr1, arr2);
   };
 
+  //  Write Array.prototype.bsearch
+
+  Array.prototype.bsearch = function (target) {
+
+    var middleIdx = Math.floor(this.length/2);
+    if (this.length === 0) {
+      return null;
+    }
+    else if (target === this[middleIdx]) {
+      return middleIdx;
+    }
+    else if (target >= this[middleIdx]) {
+      var right = this.slice(middleIdx, this.length)
+      return right.bsearch(target) + middleIdx
+    }
+    else if (true) {
+      var left = this.slice(0,middleIdx)
+      return left.bsearch(target)
+    }
+  };
+
+
   Array.prototype.mergeSort = function (comparator) {
 
     comparator = comparator || function (x, y) {
