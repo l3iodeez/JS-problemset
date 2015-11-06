@@ -90,7 +90,6 @@
 
   //  Write Array.prototype.bsearch
 
-  }
 
 
   // Write Array.prototype.mergeSort(comparator) It should use a comparator function if
