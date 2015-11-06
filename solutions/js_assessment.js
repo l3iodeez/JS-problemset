@@ -362,6 +362,28 @@ debugger
     }
   };
 
+  // Write Function.prototype.curry
+
+  Function.prototype.curry = function (numArgs) {
+    var args = [];
+    var fn = this;
+    var _curriedFunc = function (arg) {
+      args.push(arg)
+      if (args.length === numArgs){
+        return fn.apply(fn, args)
+      } else {
+        return _curriedFunc;
+      }
+    }
+    return _curriedFunc;
+  }
+
+  // Write Function.prototype.myCall
+  Function.prototype.myCall = function (context) {
+    var args = [].slice.bind(arguments)(1);
+    return this.apply(context, args);
+  }
+
   // write Function.prototype.myBind.
 
   Function.prototype.myBind = function (context) {
